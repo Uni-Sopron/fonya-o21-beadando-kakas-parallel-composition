@@ -69,7 +69,7 @@ class DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("DFA_1.json")
+    dfa1 = DFA("dfa_1.json")
     print(f"""
         states: {dfa1.get_states()},
         alphabet: {dfa1.get_alphabet()},
@@ -77,14 +77,14 @@ if __name__ == "__main__":
         initial state: {dfa1.get_initial_state()},
         accepting states: {dfa1.get_accepting_states()}
     """)
-    # dfa2 = DFA("DFA_2.json")
-    # print(f"""
-    #     states: {dfa2.get_states()},
-    #     alphabet: {dfa2.get_alphabet()},
-    #     transitions: {dfa2.get_transitions()},
-    #     initial state: {dfa2.get_initial_state()},
-    #     accepting states: {dfa2.get_accepting_states()}
-    # """)
+    dfa2 = DFA("dfa_2.json")
+    print(f"""
+        states: {dfa2.get_states()},
+        alphabet: {dfa2.get_alphabet()},
+        transitions: {dfa2.get_transitions()},
+        initial state: {dfa2.get_initial_state()},
+        accepting states: {dfa2.get_accepting_states()}
+    """)
     # dfa3 = DFA("result.json")
     # print(f"""
     #     states: {dfa3.get_states()},
@@ -93,10 +93,10 @@ if __name__ == "__main__":
     #     initial state: {dfa3.get_initial_state()},
     #     accepting states: {dfa3.get_accepting_states()}
     # """)
-    while True:
-        try:
-            user_input = input("Please give me a word: ")
-            if user_input=="": break
-            print ( "Accepted." if dfa1.is_accepted(user_input) else "Not accepted.")
-        except KeyError:
-            print("Your input contains symbols that aren't included in the alphabet of the DFA.")
+    # while True:
+    #     try:
+    #         user_input = input("Please give me a word: ")
+    #         if user_input=="": break
+    #         print ( "Accepted." if dfa2.is_accepted(user_input) else "Not accepted.")
+    #     except KeyError:
+    #         print("Your input contains symbols that aren't included in the alphabet of the DFA.")
