@@ -1,0 +1,28 @@
+{
+  "states": ["0", "1", "2", "3", "4"],
+  "alphabet": ["a", "b", "c", "d"],
+  "transitions": [
+    { "from": "0", "with": "a", "to": "1" },
+    { "from": "1", "with": "a", "to": "2" },
+    { "from": "2", "with": "a", "to": "3" },
+    { "from": "3", "with": "a", "to": "4" },
+    { "from": "4", "with": "a", "to": "0" },
+    { "from": "0", "with": "b", "to": "2" },
+    { "from": "1", "with": "b", "to": "3" },
+    { "from": "2", "with": "b", "to": "4" },
+    { "from": "3", "with": "b", "to": "0" },
+    { "from": "4", "with": "b", "to": "1" },
+    { "from": "0", "with": "c", "to": "3" },
+    { "from": "1", "with": "c", "to": "4" },
+    { "from": "2", "with": "c", "to": "0" },
+    { "from": "3", "with": "c", "to": "1" },
+    { "from": "4", "with": "c", "to": "2" },
+    { "from": "0", "with": "d", "to": "0" },
+    { "from": "1", "with": "d", "to": "1" },
+    { "from": "2", "with": "d", "to": "2" },
+    { "from": "3", "with": "d", "to": "3" },
+    { "from": "4", "with": "d", "to": "4" }
+  ],
+  "initial_state": "0",
+  "accepting_states": ["1", "3"]
+}
