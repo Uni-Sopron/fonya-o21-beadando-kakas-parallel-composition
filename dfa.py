@@ -7,14 +7,8 @@ class DFA:
             data = load(file)
             self.__init_instance(data)
             if verbose:
-                print(f"""
-DFA successfully created with the given file '{filename}':\n
-states: {self.get_states()}\n
-alphabet: {self.get_alphabet()}\n
-transitions: {self.get_transitions()}\n
-initial state: {self.get_initial_state()}\n
-accepting states: {self.get_accepting_states()}\n
-                            """)
+                print(self)
+
 
     #Instance initialization methods below
     def __init_instance(self, data) -> None:
@@ -60,6 +54,15 @@ accepting states: {self.get_accepting_states()}\n
 
     def is_accepted(self, user_input:str) -> bool:
         return self.is_accepting_state(self._delta_star(user_input))
+
+    def __str__(self) -> str:
+        return f"""
+DFA:
+    states: {self.get_states()}
+    alphabet: {self.get_alphabet()}
+    transitions: {self.get_transitions()}
+    initial state: {self.get_initial_state()}
+    accepting states: {self.get_accepting_states()}"""
 
 
 
