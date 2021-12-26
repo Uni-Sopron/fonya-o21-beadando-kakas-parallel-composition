@@ -15,7 +15,12 @@ class DFA_util:
             for symbol in alphabet:
                     transition_1 = dfa_1.get_transitions()[f"({state[:1]}, {symbol})"]
                     transition_2 = dfa_2.get_transitions()[f"({state[1:]}, {symbol})"]
-                    transitions.append({"from":state, "with": symbol, "to": "".join([transition_1,transition_2])})
+                    if True:
+                        transitions.append({"from":state, "with": symbol, "to": "".join([transition_1,transition_2])})
+                    elif True:
+                        transitions.append({"from":state, "with": symbol, "to": transition_1})
+                    else:
+                        transitions.append({"from":state, "with": symbol, "to": transition_2})
 
         result = {
             "states": states,

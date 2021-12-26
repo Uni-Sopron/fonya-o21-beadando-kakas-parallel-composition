@@ -9,3 +9,5 @@
 
 - dfa_1.json: #a + #b >= 2, Σ = {a, b}
 - dfa_2.json: #a <= 3, Σ = {a, b}
+- dfa_3.json: #a % 2 == 0, Σ = {a, b}
+- dfa_4.json: #b >= 2, Σ = {c, b}

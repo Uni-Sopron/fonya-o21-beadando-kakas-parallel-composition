@@ -1,0 +1,12 @@
+{
+  "states": ["0", "1"],
+  "alphabet": ["a", "b"],
+  "transitions": [
+    { "from": "0", "with": "a", "to": "1" },
+    { "from": "1", "with": "a", "to": "0" },
+    { "from": "0", "with": "b", "to": "0" },
+    { "from": "1", "with": "b", "to": "1" }
+  ],
+  "initial_state": "0",
+  "accepting_states": ["0"]
+}
