@@ -2,37 +2,32 @@ from json import load
 from pathlib import Path
 
 class DFA:
-    def __init__(self, filename:str) -> None:
-        file_to_search = Path(filename)
-
-        if file_to_search.exists():
-            with open(filename) as file:
-                data = load(file)
-                self.__init_instance(data, filename)
-        else:
-            self.__default_init(filename)
+    def __init__(self, filename:str, verbose:bool=False) -> None:
+        with open(filename) as file:
+            data = load(file)
+            self.__init_instance(data)
+            if verbose:
+                print(f"""
+DFA successfully created with the given file '{filename}':\n
+states: {self.get_states()}\n
+alphabet: {self.get_alphabet()}\n
+transitions: {self.get_transitions()}\n
+initial state: {self.get_initial_state()}\n
+accepting states: {self.get_accepting_states()}\n
+                            """)
 
     #Instance initialization methods below
-    def __init_instance(self, data, filename) -> None:
+    def __init_instance(self, data) -> None:
         self.__states = data["states"]
         self.__alphabet = data["alphabet"]
         self.__build_transition_cache(data["transitions"])
         self.__initial_state = data["initial_state"]
         self.__accepting_states = data["accepting_states"]
-        print(f"DFA successfully created with the given file '{filename}'.")
 
     def __build_transition_cache(self, transitions) -> None:
         self.__transitions = {}
         for transition in transitions:
             self.__transitions[f'({transition["from"]}, {transition["with"]})']= transition["to"]
-
-    def __default_init(self, filename:str):
-        self.__states = []
-        self.__alphabet = []
-        self.__transitions = {}
-        self.__initial_state = 0
-        self.__accepting_states = []
-        print(f"The DFA was initialized with default values because the file '{filename}' wasn't found.")
 
     #Getters below
     def get_states(self) -> list:
@@ -69,18 +64,5 @@ class DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("result.json")
-    print(f"""
-        states: {dfa1.get_states()},
-        alphabet: {dfa1.get_alphabet()},
-        transitions: {dfa1.get_transitions()},
-        initial state: {dfa1.get_initial_state()},
-        accepting states: {dfa1.get_accepting_states()}
-    """)
-    while True:
-        try:
-            user_input = input("Please give me a word: ")
-            if user_input=="": break
-            print ( "Accepted." if dfa1.is_accepted(user_input) else "Not accepted.")
-        except KeyError:
-            print("Your input contains symbols that aren't included in the alphabet of the DFA.")
+    dfa1 = DFA("dfa_3.json", verbose=True)
+    dfa2 = DFA("dfa_4.json", verbose=True)
