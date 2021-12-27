@@ -20,7 +20,7 @@ class DFA:
     def __build_transition_cache(self, transitions) -> None:
         self.__transitions = {}
         for transition in transitions:
-            self.__transitions[f'({transition["from"]}, {transition["with"]})']= transition["to"]
+            self.__transitions[(transition["from"],transition["with"])]= transition["to"]
 
     #Getters below
     def get_states(self) -> list:
@@ -66,5 +66,12 @@ DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("dfa_3.json", verbose=True)
-    dfa2 = DFA("dfa_4.json", verbose=True)
+    dfa1 = DFA("./json/dfa_1.json", verbose=True)
+    dfa2 = DFA("./json/dfa_2.json", verbose=True)
+    dfa3 = DFA("./json/dfa_3.json", verbose=True)
+    dfa4 = DFA("./json/dfa_4.json", verbose=True)
+    dfa5 = DFA("./json/dfa_5.json", verbose=True)
+    dfa6 = DFA("./json/dfa_6.json", verbose=True)
+    dfa7 = DFA("./json/dfa_7.json", verbose=True)
+    dfa8 = DFA("./json/dfa_8.json", verbose=True)
+    dfa2 = DFA("paralleled_dfa.json", verbose=True)

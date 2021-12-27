@@ -14,8 +14,8 @@ class DFA_utils:
         for state in states:
             dot_index= state.index(".")
             for symbol in alphabet:
-                    key_1 = f"({state[:dot_index]}, {symbol})"
-                    key_2 = f"({state[dot_index+1:]}, {symbol})"
+                    key_1 = (state[:dot_index], symbol)
+                    key_2 = (state[dot_index+1:], symbol)
                     
         
                     if symbol not in dfa_1.get_alphabet():
@@ -45,26 +45,26 @@ class DFA_utils:
 
     @staticmethod
     def accessible_part(dfa:DFA, filename_for_new_dfa:str="dfa_after_ac.json") -> None:
-        states=set()
+        states= []
         transitions= []
         
         for _ in range(0, len(dfa.get_states())-2):
             for state in dfa.get_states():
-                transitions_to_temp= set(map(lambda transition: transition["to"], transitions))
+                transitions_to_temp= list(map(lambda transition: transition["to"], transitions))
                 for symbol in dfa.get_alphabet():
-                    key = f"({state}, {symbol})"
-                    if state == dfa.get_initial_state() or state in transitions_to_temp:
-                        states.add(state)
+                    key = (state, symbol)
+                    if (state in transitions_to_temp or state == dfa.get_initial_state()) and state not in states:
+                        states.append(state)
                         transitions.append({"from":state, "with": symbol, "to": dfa.get_transitions()[key]})
 
-        accepting_states= filter(lambda state: state in states, dfa.get_accepting_states())
+        accepting_states= list(filter(lambda state: state in states, dfa.get_accepting_states()))
 
         result= {
-            "states": list(states),
+            "states": states,
             "alphabet": dfa.get_alphabet(),
             "transitions": transitions,
             "initial_state": dfa.get_initial_state(),
-            "accepting_states": list(accepting_states)
+            "accepting_states": accepting_states
         }
         with open(filename_for_new_dfa, "w") as file:
             dump(result, file, indent=4)
