@@ -45,7 +45,7 @@ class DFA:
     def _delta_star(self, user_input:str) -> int:
         state = self.get_initial_state()
         for symbol in user_input:
-            state=self._delta(f"({state}, {symbol})")
+            state=self._delta((state, symbol))
         return state 
     
     def is_accepting_state(self, state:str) -> bool:

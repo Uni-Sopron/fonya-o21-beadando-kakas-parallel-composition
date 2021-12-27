@@ -85,8 +85,8 @@ class DFA_utils:
                 print("Your input contains symbols that aren't included in the alphabet of the DFA.")
 
 if __name__ == "__main__":
-    dfa_1= DFA("./json/dfa_1.json")
-    dfa_2= DFA("./json/dfa_2.json")
+    dfa_1= DFA("./json/dfa_5.json")
+    dfa_2= DFA("./json/dfa_6.json")
     DFA_utils.parallel_composition(dfa_1, dfa_2)
     dfa_3= DFA("paralleled_dfa.json")
     DFA_utils.accessible_part(dfa_3)
