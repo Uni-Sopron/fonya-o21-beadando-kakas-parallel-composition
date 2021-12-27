@@ -52,10 +52,13 @@ class DFA_utils:
             for state in dfa.get_states():
                 transitions_to_temp= list(map(lambda transition: transition["to"], transitions))
                 for symbol in dfa.get_alphabet():
-                    key = (state, symbol)
-                    if (state in transitions_to_temp or state == dfa.get_initial_state()) and state not in states:
-                        states.append(state)
-                        transitions.append({"from":state, "with": symbol, "to": dfa.get_transitions()[key]})
+                    key= (state, symbol)
+                    transition= {"from": state, "with": symbol, "to": dfa.get_transitions()[key]}
+                    if (state in transitions_to_temp or state == dfa.get_initial_state()):
+                        if state not in states:
+                            states.append(state)
+                        if transition not in transitions:
+                            transitions.append(transition)
 
         accepting_states= list(filter(lambda state: state in states, dfa.get_accepting_states()))
 
