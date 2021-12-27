@@ -1,9 +1,8 @@
 from json import load
-from pathlib import Path
 
 class DFA:
-    def __init__(self, filename:str, verbose:bool=False) -> None:
-        with open(filename) as file:
+    def __init__(self, filepath:str, verbose:bool=False) -> None:
+        with open(filepath) as file:
             data = load(file)
             self.__init_instance(data)
             if verbose:
