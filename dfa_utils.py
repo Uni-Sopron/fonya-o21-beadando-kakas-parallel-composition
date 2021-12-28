@@ -16,29 +16,29 @@ class DFA_utils:
             for symbol in alphabet:
                     key_1 = (state[:dot_index], symbol)
                     key_2 = (state[dot_index+1:], symbol)
-                    
-        
+                           
                     if symbol not in dfa_1.get_alphabet():
                         transition_1= state[:dot_index]
                         transition_2= dfa_2.get_transitions()[key_2]
-                        transitions.append({"from":state, "with": symbol, "to": ".".join([transition_1,transition_2])})
+                        transitions.append({"from": state.replace(".",""), "with": symbol, "to": "".join([transition_1,transition_2])})
 
                     elif symbol not in dfa_2.get_alphabet():
                         transition_1= dfa_1.get_transitions()[key_1]
                         transition_2= state[dot_index+1:]
-                        transitions.append({"from":state, "with": symbol, "to": ".".join([transition_1,transition_2])})
+                        transitions.append({"from": state.replace(".",""), "with": symbol, "to": "".join([transition_1,transition_2])})
 
                     else:
                         transition_1= dfa_1.get_transitions()[key_1]
                         transition_2= dfa_2.get_transitions()[key_2]
-                        transitions.append({"from":state, "with": symbol, "to": ".".join([transition_1,transition_2])})
+                        transitions.append({"from": state.replace(".",""), "with": symbol, "to": "".join([transition_1,transition_2])})
+
 
         result= {
-            "states": states,
+            "states": [state.replace(".","") for state in states],
             "alphabet": alphabet,
             "transitions": transitions,
-            "initial_state": initial_state,
-            "accepting_states": accepting_states
+            "initial_state": initial_state.replace(".",""),
+            "accepting_states": [state.replace(".","") for state in accepting_states]
         }
         with open(filename_for_new_dfa, "w") as file:
             dump(result, file, indent=4)
