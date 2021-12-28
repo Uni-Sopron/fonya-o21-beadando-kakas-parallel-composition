@@ -72,18 +72,6 @@ class DFA_utils:
         with open(filename_for_new_dfa, "w") as file:
             dump(result, file, indent=4)
 
-
-    @staticmethod
-    def dfa_testing(dfa:DFA) -> None:
-        print(f"\nInput alphabet: {dfa.get_alphabet()}. Press 'Enter' without any input to quit.\n")
-        while True:
-            try:
-                user_input = input("Please give me a word: ")
-                if user_input=="": break
-                print ( "Accepted." if dfa.is_accepted(user_input) else "Not accepted.")
-            except KeyError:
-                print("Your input contains symbols that aren't included in the alphabet of the DFA.")
-
 if __name__ == "__main__":
     dfa_1= DFA("./json/dfa_5.json")
     dfa_2= DFA("./json/dfa_6.json")
@@ -91,4 +79,3 @@ if __name__ == "__main__":
     dfa_3= DFA("paralleled_dfa.json")
     DFA_utils.accessible_part(dfa_3)
     dfa_4= DFA("dfa_after_ac.json")
-    DFA_utils.dfa_testing(dfa_4)

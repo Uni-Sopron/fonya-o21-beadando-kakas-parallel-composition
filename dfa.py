@@ -1,6 +1,32 @@
 from json import load
 
 class DFA:
+    """
+    Deterministic Finite Automaton object
+    
+    Acceptable input file format:
+
+    - JSON
+
+    Datatypes:
+
+    - states: list of strings
+    - alphabet: list of strings
+    - transitions: list of dictionaries of string key and value pairs
+    - initial state: string
+    - accepting states: list of strings
+
+    Example of required JSON structure:
+
+    {
+        "states": [ "0", "1" ],\n
+        "alphabet": [ "a", "b" ],\n
+        "transitions": [ { "from": 0, "with": a, "to": 1}, { "from": 1, "with": b, "to": 1 } ],\n
+        "initial_state": 0,\n
+        "accepting_states": [ "0", "1" ]
+
+    }
+    """
     def __init__(self, filepath:str, verbose:bool=False) -> None:
         with open(filepath) as file:
             data = load(file)
@@ -66,12 +92,11 @@ DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("./json/dfa_1.json", verbose=True)
-    dfa2 = DFA("./json/dfa_2.json", verbose=True)
-    dfa3 = DFA("./json/dfa_3.json", verbose=True)
-    dfa4 = DFA("./json/dfa_4.json", verbose=True)
-    dfa5 = DFA("./json/dfa_5.json", verbose=True)
-    dfa6 = DFA("./json/dfa_6.json", verbose=True)
-    dfa7 = DFA("./json/dfa_7.json", verbose=True)
-    dfa8 = DFA("./json/dfa_8.json", verbose=True)
-    dfa2 = DFA("paralleled_dfa.json", verbose=True)
+    dfa1 = DFA("dfa_after_ac.json", verbose=True)
+    while True:
+        try:
+            user_input = input("\nPress 'Enter' without any other input to quit the application.\nPlease give me a word: ")
+            if user_input=="": break
+            print ( "Accepted." if dfa1.is_accepted(user_input) else "Not accepted.")
+        except KeyError:
+            print("\nYour input contains symbols that aren't included in the alphabet of the DFA.")
