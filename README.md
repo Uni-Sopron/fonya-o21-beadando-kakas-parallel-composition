@@ -35,7 +35,7 @@ The class is capable of:
 
 To run / test it open terminal and type the following:
 
-```console
+```ps
 python dfa.py
 ```
 
@@ -48,7 +48,7 @@ The class is capable of:
 
 To run / test it open terminal and type the following:
 
-```console
+```ps
 python dfa_utils.py
 ```
 
