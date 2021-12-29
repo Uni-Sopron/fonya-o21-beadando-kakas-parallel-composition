@@ -46,7 +46,8 @@ class DFA:
     def __build_transition_cache(self, transitions) -> None:
         self.__transitions = {}
         for transition in transitions:
-            self.__transitions[(transition["from"],transition["with"])]= transition["to"]
+            self.__transitions[(tuple(transition["from"]), transition["with"])]= transition["to"]
+        print(self.__transitions)
 
     #Getters below
     def get_states(self) -> list:
