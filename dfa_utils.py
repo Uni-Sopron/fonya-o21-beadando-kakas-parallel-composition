@@ -1,5 +1,6 @@
 from dfa import DFA
 from json import dump
+from copy import deepcopy
 
 class DFA_utils:
 
@@ -15,22 +16,19 @@ class DFA_utils:
             for symbol in alphabet:
                     key_1 = (s1, symbol)
                     key_2 = (s2, symbol)
-                    state_1 = s1
-                    state_2 = s2
-                    transition= {"from": s1+s2, "with": symbol, "to": state_1+state_2}
                            
                     if symbol not in dfa_1.get_alphabet():
                         state_2= dfa_2.get_transitions()[key_2]
-                        transitions.append(transition)
+                        transitions.append({"from": s1+s2, "with": symbol, "to": s1+state_2})
 
                     elif symbol not in dfa_2.get_alphabet():
                         state_1= dfa_1.get_transitions()[key_1]
-                        transitions.append(transition)
+                        transitions.append({"from": s1+s2, "with": symbol, "to": state_1+s2})
 
                     else:
                         state_1= dfa_1.get_transitions()[key_1]
                         state_2= dfa_2.get_transitions()[key_2]
-                        transitions.append(transition)
+                        transitions.append({"from": s1+s2, "with": symbol, "to": state_1+state_2})
 
 
         result= {
