@@ -12,7 +12,7 @@ class DFA:
 
     - states: list of strings
     - alphabet: list of strings
-    - transitions: list of dictionaries of string key and value pairs
+    - transitions: list of dictionaries of string values
     - initial state: string
     - accepting states: list of strings
 
@@ -21,7 +21,7 @@ class DFA:
     {
         "states": [ "0", "1" ],\n
         "alphabet": [ "a", "b" ],\n
-        "transitions": [ { "from": 0, "with": a, "to": 1}, { "from": 1, "with": b, "to": 1 } ],\n
+        "transitions": [ { "from": "0", "with": "a", "to": "1"}, { "from": "1", "with": "b", "to": "1" } ],\n
         "initial_state": 0,\n
         "accepting_states": [ "0", "1" ]
 
@@ -37,14 +37,14 @@ class DFA:
 
     #Instance initialization methods below
     def __init_instance(self, data) -> None:
-        self.__states=  data["states"]
-        self.__alphabet= data["alphabet"]
+        self.__states:list=  data["states"]
+        self.__alphabet:list= data["alphabet"]
         self.__build_transition_cache(data["transitions"])
-        self.__initial_state= data["initial_state"]
-        self.__accepting_states= data["accepting_states"]
+        self.__initial_state:str= data["initial_state"]
+        self.__accepting_states:list= data["accepting_states"]
 
     def __build_transition_cache(self, transitions) -> None:
-        self.__transitions = {}
+        self.__transitions:dict = {}
         for transition in transitions:
             self.__transitions[transition["from"], transition["with"]]= transition["to"]
 
@@ -68,8 +68,8 @@ class DFA:
     def _delta(self, key:str) -> str:
         return self.get_transitions()[key]
 
-    def _delta_star(self, user_input:str) -> int:
-        state = self.get_initial_state()
+    def _delta_star(self, user_input:str) -> str:
+        state:str = self.get_initial_state()
         for symbol in user_input:
             state= self._delta((state, symbol))
         return state 
@@ -95,10 +95,10 @@ DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("dfa_after_ac.json", verbose=True)
+    dfa1:DFA = DFA("dfa_after_ac.json", verbose=True)
     while True:
         try:
-            user_input = input("\nPress 'Enter' without any other input to quit the application.\nPlease give me a word: ")
+            user_input:str = input("\nPress 'Enter' without any other input to quit the application.\nPlease give me a word: ")
             if user_input=="": break
             print ( "Accepted." if dfa1.is_accepted(user_input) else "Not accepted.")
         except KeyError:
