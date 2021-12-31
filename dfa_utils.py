@@ -1,6 +1,5 @@
 from dfa import DFA
 from json import dump
-from copy import deepcopy
 
 class DFA_utils:
 
@@ -64,7 +63,7 @@ class DFA_utils:
         alphabet= dfa.get_alphabet()
         transitions= []
         initial_state= dfa.get_initial_state()
-        number_of_iterations= range(0, dfa.number_of_states()-2)
+        number_of_iterations= range(0, dfa.number_of_states()-1)
 
 
         for _ in number_of_iterations:
@@ -84,8 +83,7 @@ class DFA_utils:
         states= list(map(lambda transition: transition["to"], transitions))
         states= [initial_state, *states]
         states= set(states)
-        states= list(states)
-        return states
+        return list(states)
 
 if __name__ == "__main__":
     dfa_1= DFA("./json/dfa_1.json")

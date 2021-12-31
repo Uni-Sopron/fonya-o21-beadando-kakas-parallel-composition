@@ -95,7 +95,7 @@ DFA:
 
 
 if __name__ == "__main__":
-    dfa1 = DFA("paralleled_dfa.json", verbose=True)
+    dfa1 = DFA("dfa_after_ac.json", verbose=True)
     while True:
         try:
             user_input = input("\nPress 'Enter' without any other input to quit the application.\nPlease give me a word: ")
