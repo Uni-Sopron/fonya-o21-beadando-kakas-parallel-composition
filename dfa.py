@@ -46,7 +46,7 @@ class DFA:
     def __build_transition_cache(self, transitions) -> None:
         self.__transitions = {}
         for transition in transitions:
-            self.__transitions[(transition["from"]), transition["with"]]= transition["to"]
+            self.__transitions[transition["from"], transition["with"]]= transition["to"]
 
     #Getters below
     def get_states(self) -> list:
@@ -79,6 +79,9 @@ class DFA:
 
     def is_accepted(self, user_input:str) -> bool:
         return self.is_accepting_state(self._delta_star(user_input))
+
+    def number_of_states(self) -> int:
+        return len(self.get_states())
 
     def __str__(self) -> str:
         return f"""
