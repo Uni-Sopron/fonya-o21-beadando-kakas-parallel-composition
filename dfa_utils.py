@@ -63,7 +63,7 @@ class DFA_utils:
         alphabet:list= dfa.get_alphabet()
         transitions:list= []
         initial_state:str= dfa.get_initial_state()
-        number_of_iterations:int= range(0, dfa.number_of_states()-1)
+        number_of_iterations:range= range(0, dfa.number_of_states()-1)
 
 
         for _ in number_of_iterations:
@@ -86,8 +86,8 @@ class DFA_utils:
         return list(set_of_states)
 
 if __name__ == "__main__":
-    dfa_1:DFA= DFA("./json/dfa_1.json")
-    dfa_2:DFA= DFA("./json/dfa_2.json")
+    dfa_1:DFA= DFA("./json/dfa_5.json")
+    dfa_2:DFA= DFA("./json/dfa_6.json")
     DFA_utils.parallel_composition(dfa_1, dfa_2)
     dfa_3:DFA= DFA("paralleled_dfa.json", verbose=True)
     DFA_utils.accessible_part(dfa_3)
